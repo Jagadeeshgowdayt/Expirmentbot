@@ -1,17 +1,15 @@
-# Koyeb service definition for a polling-based bot
-name: telegram-broadcaster
+name: Expirmentbot
 region: ewr
 service:
-  role: web
+  role: web        # polling mode doesn’t need HTTP ports
   runtime: docker
   source:
     type: git
-    url: https://github.com/<YOUR_USER>/telegram-broadcaster.git
+    url: https://github.com/Jagadeeshgowdayt/Expirmentbot.git
   env:
     BOT_TOKEN: "7583784576:AAFVZaHyv6JGUDXTFJ3XYaQ03WRCZQolTEk"
     CHANNEL_IDS: "-1002822240154"
   build:
     dockerfile_path: Dockerfile
-  ports:
-    - port: 8080
-    
+#  ports:            ←─ this entire section is now gone
+#    - port: 8080
