@@ -1,0 +1,15 @@
+
+services:
+  - name: bot-service
+    image: koyeb/runner:python
+    build:
+      type: docker
+      dockerfile: Dockerfile
+    env:
+      BOT_TOKEN: secret
+      CHANNEL_IDS: secret
+    ports:
+      - internal: 8443
+        external: 80
+    routes:
+      - path: /webhook
