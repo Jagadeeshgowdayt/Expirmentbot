@@ -1,18 +1,25 @@
-name: telegram-broadcast-bot
+name: broadcast-bot
+regions:
+  - iad
 
-services:
-  - name: broadcast-bot
-    git:
-      repo: https://github.com/Jagadeeshgowdayt/Expirmentbot
-      branch: main
-    build:
-      dockerfile: Dockerfile
-    env:
-      - name: BOT_TOKEN
-        value: 7583784576:AAFVZaHyv6JGUDXTFJ3XYaQ03WRCZQolTEk
-      - name: CHANNEL_IDS
-        value: -1002822240154
-    instance_type: nano
-    regions:
-      - iad
+build:
+  type: buildpack
+
+run:
+  cmd: python main.py
+  env:
+    - name: BOT_TOKEN
+      value: 7583784576:AAFVZaHyv6JGUDXTFJ3XYaQ03WRCZQolTEk
+
+ports:
+  - port: 8080
+    protocol: http
+    public: true
+    health_check:
+      grace_period: 5
+      interval: 30
+      restart_limit: 3
+      timeout: 5
+      method: GET
+      path: /
       
