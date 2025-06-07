@@ -1,15 +1,17 @@
-
-services:
-  - name: bot-service
-    image: koyeb/runner:python
-    build:
-      type: docker
-      dockerfile: Dockerfile
-    env:
-      BOT_TOKEN: secret
-      CHANNEL_IDS: secret
-    ports:
-      - internal: 8443
-        external: 80
-    routes:
-      - path: /webhook
+# Koyeb service definition for a polling-based bot
+name: telegram-broadcaster
+region: ewr
+service:
+  role: web
+  runtime: docker
+  source:
+    type: git
+    url: https://github.com/<YOUR_USER>/telegram-broadcaster.git
+  env:
+    BOT_TOKEN: "7583784576:AAFVZaHyv6JGUDXTFJ3XYaQ03WRCZQolTEk"
+    CHANNEL_IDS: "-1002822240154"
+  build:
+    dockerfile_path: Dockerfile
+  ports:
+    - port: 8080
+    
