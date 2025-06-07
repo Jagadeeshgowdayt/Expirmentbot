@@ -1,9 +1,9 @@
 name: telegram-bot
+
 build:
   type: docker
   dockerfile: Dockerfile
 
 run:
   cmd: python main.py
-  container_port: 8080
   
