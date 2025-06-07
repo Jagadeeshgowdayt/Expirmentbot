@@ -1,15 +1,18 @@
-name: Expirmentbot
-region: ewr
-service:
-  role: web        # polling mode doesn’t need HTTP ports
-  runtime: docker
-  source:
-    type: git
-    url: https://github.com/Jagadeeshgowdayt/Expirmentbot.git
-  env:
-    BOT_TOKEN: "7583784576:AAFVZaHyv6JGUDXTFJ3XYaQ03WRCZQolTEk"
-    CHANNEL_IDS: "-1002822240154"
-  build:
-    dockerfile_path: Dockerfile
-#  ports:            ←─ this entire section is now gone
-#    - port: 8080
+name: telegram-broadcast-bot
+
+services:
+  - name: broadcast-bot
+    git:
+      repo: https://github.com/Jagadeeshgowdayt/Expirmentbot
+      branch: main
+    build:
+      dockerfile: Dockerfile
+    env:
+      - name: BOT_TOKEN
+        value: 7583784576:AAFVZaHyv6JGUDXTFJ3XYaQ03WRCZQolTEk
+      - name: CHANNEL_IDS
+        value: -1002822240154
+    instance_type: nano
+    regions:
+      - iad
+      
